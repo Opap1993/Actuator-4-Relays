@@ -1,0 +1,345 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>7.0</ProjectVersion>
+    <ToolchainName>com.Atmel.ARMGCC.CPP</ToolchainName>
+    <ProjectGuid>{6fcc8c11-094c-4e8d-821d-90d9df242911}</ProjectGuid>
+    <avrdevice>ATSAM3X8E</avrdevice>
+    <avrdeviceseries>none</avrdeviceseries>
+    <OutputType>Executable</OutputType>
+    <Language>CPP</Language>
+    <OutputFileName>$(MSBuildProjectName)</OutputFileName>
+    <OutputFileExtension>.elf</OutputFileExtension>
+    <OutputDirectory>$(MSBuildProjectDirectory)\$(Configuration)</OutputDirectory>
+    <AssemblyName>Actuator_4_Relays</AssemblyName>
+    <Name>Actuator_4_Relays</Name>
+    <RootNamespace>Actuator_4_Relays</RootNamespace>
+    <ToolchainFlavour>Native</ToolchainFlavour>
+    <KeepTimersRunning>true</KeepTimersRunning>
+    <OverrideVtor>false</OverrideVtor>
+    <CacheFlash>true</CacheFlash>
+    <ProgFlashFromRam>true</ProgFlashFromRam>
+    <RamSnippetAddress>0x20000000</RamSnippetAddress>
+    <UncachedRange />
+    <OverrideVtorValue>exception_table</OverrideVtorValue>
+    <BootSegment>2</BootSegment>
+    <eraseonlaunchrule>0</eraseonlaunchrule>
+    <AsfFrameworkConfig>
+      <framework-data>
+        <options />
+        <configurations />
+        <files />
+        <documentation help="" />
+        <offline-documentation help="" />
+        <dependencies>
+          <content-extension eid="atmel.asf" uuidref="Atmel.ASF" version="3.42.0" />
+        </dependencies>
+      </framework-data>
+    </AsfFrameworkConfig>
+    <preserveEEPROM>true</preserveEEPROM>
+    <ResetRule>0</ResetRule>
+    <EraseKey />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <ToolchainSettings>
+      <ArmGccCpp>
+  <armgcc.common.outputfiles.hex>True</armgcc.common.outputfiles.hex>
+  <armgcc.common.outputfiles.lss>True</armgcc.common.outputfiles.lss>
+  <armgcc.common.outputfiles.eep>True</armgcc.common.outputfiles.eep>
+  <armgcc.common.outputfiles.bin>True</armgcc.common.outputfiles.bin>
+  <armgcc.common.outputfiles.srec>True</armgcc.common.outputfiles.srec>
+  <armgcc.compiler.symbols.DefSymbols>
+    <ListValues>
+      <Value>__AVR_ATmega328p__</Value>
+      <Value>__AVR_ATmega328P__</Value>
+      <Value>_VMDEBUG=1</Value>
+      <Value>ARDUINO=108013</Value>
+      <Value>ARDUINO_MAIN</Value>
+      <Value>F_CPU=16000000L</Value>
+      <Value>__AVR__</Value>
+      <Value>ARDUINO_AVR_UNO</Value>
+      <Value>ARDUINO_ARCH_AVR</Value>
+    </ListValues>
+  </armgcc.compiler.symbols.DefSymbols>
+  <armgcc.compiler.directories.IncludePaths>
+    <ListValues>
+      <Value>../../../Actuator_4_Relays</Value>
+      <Value>C:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries/SoftwareSerial/src</Value>
+      <Value>C:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries/Wire/src</Value>
+      <Value>C:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries/Wire/src/utility</Value>
+      <Value>C:/Program Files (x86)/Arduino/hardware/arduino/avr/cores/arduino</Value>
+      <Value>C:/Program Files (x86)/Arduino/hardware/arduino/avr/variants/standard</Value>
+      <Value>C:/Users/John/Desktop/ACTUAT~1/ACTUAT~1</Value>
+      <Value>C:/Users/John/AppData/Local/arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7//lib/gcc/avr/7.3.0/include</Value>
+      <Value>C:/Users/John/AppData/Local/arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7/avr/include</Value>
+      <Value>C:/Users/John/AppData/Local/arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7/avr/include-fixed</Value>
+      <Value>C:/Users/John/AppData/Local/arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7/avr/include/avr</Value>
+      <Value>C:/Users/John/AppData/Local/arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7/lib/gcc/avr/4.9.2/include</Value>
+      <Value>C:/Users/John/AppData/Local/arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7/lib/gcc/avr/4.9.3/include</Value>
+      <Value>{vm.intellisense.add-paths}</Value>
+    </ListValues>
+  </armgcc.compiler.directories.IncludePaths>
+  <armgcc.compiler.optimization.level>Optimize debugging experience (-Og)</armgcc.compiler.optimization.level>
+  <armgcc.compiler.optimization.PrepareFunctionsForGarbageCollection>True</armgcc.compiler.optimization.PrepareFunctionsForGarbageCollection>
+  <armgcc.compiler.optimization.DebugLevel>Maximum (-g3)</armgcc.compiler.optimization.DebugLevel>
+  <armgcc.compiler.warnings.AllWarnings>True</armgcc.compiler.warnings.AllWarnings>
+  <armgcccpp.compiler.symbols.DefSymbols>
+    <ListValues>
+      <Value>__AVR_ATmega328p__</Value>
+      <Value>__AVR_ATmega328P__</Value>
+      <Value>_VMDEBUG=1</Value>
+      <Value>ARDUINO=108013</Value>
+      <Value>ARDUINO_MAIN</Value>
+      <Value>F_CPU=16000000L</Value>
+      <Value>__AVR__</Value>
+      <Value>ARDUINO_AVR_UNO</Value>
+      <Value>ARDUINO_ARCH_AVR</Value>
+    </ListValues>
+  </armgcccpp.compiler.symbols.DefSymbols>
+  <armgcccpp.compiler.directories.IncludePaths>
+    <ListValues>
+      <Value>../../../Actuator_4_Relays</Value>
+      <Value>C:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries/SoftwareSerial/src</Value>
+      <Value>C:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries/Wire/src</Value>
+      <Value>C:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries/Wire/src/utility</Value>
+      <Value>C:/Program Files (x86)/Arduino/hardware/arduino/avr/cores/arduino</Value>
+      <Value>C:/Program Files (x86)/Arduino/hardware/arduino/avr/variants/standard</Value>
+      <Value>C:/Users/John/Desktop/ACTUAT~1/ACTUAT~1</Value>
+      <Value>C:/Users/John/AppData/Local/arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7//lib/gcc/avr/7.3.0/include</Value>
+      <Value>C:/Users/John/AppData/Local/arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7/avr/include</Value>
+      <Value>C:/Users/John/AppData/Local/arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7/avr/include-fixed</Value>
+      <Value>C:/Users/John/AppData/Local/arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7/avr/include/avr</Value>
+      <Value>C:/Users/John/AppData/Local/arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7/lib/gcc/avr/4.9.2/include</Value>
+      <Value>C:/Users/John/AppData/Local/arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7/lib/gcc/avr/4.9.3/include</Value>
+      <Value>{vm.intellisense.add-paths}</Value>
+    </ListValues>
+  </armgcccpp.compiler.directories.IncludePaths>
+  <armgcccpp.compiler.optimization.level>Optimize debugging experience (-Og)</armgcccpp.compiler.optimization.level>
+  <armgcccpp.compiler.optimization.PrepareFunctionsForGarbageCollection>True</armgcccpp.compiler.optimization.PrepareFunctionsForGarbageCollection>
+  <armgcccpp.compiler.optimization.DebugLevel>Maximum (-g3)</armgcccpp.compiler.optimization.DebugLevel>
+  <armgcccpp.compiler.warnings.AllWarnings>True</armgcccpp.compiler.warnings.AllWarnings>
+  <armgcccpp.linker.libraries.Libraries>
+    <ListValues>
+      <Value>libm</Value>
+    </ListValues>
+  </armgcccpp.linker.libraries.Libraries>
+  <armgcccpp.linker.libraries.LibrarySearchPaths>
+    <ListValues>
+      <Value>%24(ProjectDir)\Device_Startup</Value>
+    </ListValues>
+  </armgcccpp.linker.libraries.LibrarySearchPaths>
+  <armgcccpp.linker.optimization.GarbageCollectUnusedSections>True</armgcccpp.linker.optimization.GarbageCollectUnusedSections>
+  <armgcccpp.linker.miscellaneous.LinkerFlags>-Tsam3x8e_flash.ld</armgcccpp.linker.miscellaneous.LinkerFlags>
+  <armgcccpp.assembler.general.IncludePaths>
+    <ListValues>
+      <Value>%24(PackRepoDir)\arm\CMSIS\5.4.0\CMSIS\Core\Include\</Value>
+      <Value>%24(PackRepoDir)\atmel\SAM3X_DFP\1.0.50\include</Value>
+    </ListValues>
+  </armgcccpp.assembler.general.IncludePaths>
+  <armgcccpp.assembler.debugging.DebugLevel>Default (-g)</armgcccpp.assembler.debugging.DebugLevel>
+  <armgcccpp.preprocessingassembler.general.IncludePaths>
+    <ListValues>
+      <Value>%24(PackRepoDir)\arm\CMSIS\5.4.0\CMSIS\Core\Include\</Value>
+      <Value>%24(PackRepoDir)\atmel\SAM3X_DFP\1.0.50\include</Value>
+    </ListValues>
+  </armgcccpp.preprocessingassembler.general.IncludePaths>
+  <armgcccpp.preprocessingassembler.debugging.DebugLevel>Default (-Wa,-g)</armgcccpp.preprocessingassembler.debugging.DebugLevel>
+</ArmGccCpp>
+    </ToolchainSettings>
+    <VisualMicroSettings>
+      <VisualMicroSettings>
+        <config.Debug.customdebug_uno_debugger_type>universal</config.Debug.customdebug_uno_debugger_type>
+        <ValidatedAS7>1</ValidatedAS7>
+        <custom_uno_vm.programmer_name>atmel_ice</custom_uno_vm.programmer_name>
+        <custom_uno_vm.upload.useprogrammer>1</custom_uno_vm.upload.useprogrammer>
+      </VisualMicroSettings>
+    </VisualMicroSettings>
+    <VMSETTING_IncludePaths>../../../Actuator_4_Relays;C:/Program Files (x86)/Arduino/hardware/arduino/avr/cores/arduino;C:/Program Files (x86)/Arduino/hardware/arduino/avr/variants/standard;C:/Users/John/AppData/Local/arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7//lib/gcc/avr/7.3.0/include;C:/Users/John/AppData/Local/arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7/avr/include;C:/Users/John/AppData/Local/arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7/avr/include-fixed;C:/Users/John/AppData/Local/arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7/avr/include/avr;C:/Users/John/AppData/Local/arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7/lib/gcc/avr/4.9.2/include;C:/Users/John/AppData/Local/arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7/lib/gcc/avr/4.9.3/include;{vm.intellisense.add-paths};C:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries/SoftwareSerial/src;C:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries/Wire/src;C:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries/Wire/src/utility;C:/Users/John/Desktop/ACTUAT~1/ACTUAT~1;</VMSETTING_IncludePaths>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <ToolchainSettings>
+      <ArmGccCpp>
+  <armgcc.common.outputfiles.hex>True</armgcc.common.outputfiles.hex>
+  <armgcc.common.outputfiles.lss>True</armgcc.common.outputfiles.lss>
+  <armgcc.common.outputfiles.eep>True</armgcc.common.outputfiles.eep>
+  <armgcc.common.outputfiles.bin>True</armgcc.common.outputfiles.bin>
+  <armgcc.common.outputfiles.srec>True</armgcc.common.outputfiles.srec>
+  <armgcc.compiler.symbols.DefSymbols>
+    <ListValues>
+      <Value>__AVR_ATmega328p__</Value>
+      <Value>__AVR_ATmega328P__</Value>
+      <Value>_VMDEBUG=1</Value>
+      <Value>ARDUINO=108013</Value>
+      <Value>ARDUINO_MAIN</Value>
+      <Value>F_CPU=16000000L</Value>
+      <Value>__AVR__</Value>
+      <Value>ARDUINO_AVR_UNO</Value>
+      <Value>ARDUINO_ARCH_AVR</Value>
+    </ListValues>
+  </armgcc.compiler.symbols.DefSymbols>
+  <armgcc.compiler.directories.IncludePaths>
+    <ListValues>
+      <Value>../../../Actuator_4_Relays</Value>
+      <Value>C:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries/SoftwareSerial/src</Value>
+      <Value>C:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries/Wire/src</Value>
+      <Value>C:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries/Wire/src/utility</Value>
+      <Value>C:/Program Files (x86)/Arduino/hardware/arduino/avr/cores/arduino</Value>
+      <Value>C:/Program Files (x86)/Arduino/hardware/arduino/avr/variants/standard</Value>
+      <Value>C:/Users/John/Desktop/ACTUAT~1/ACTUAT~1</Value>
+      <Value>C:/Users/John/AppData/Local/arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7//lib/gcc/avr/7.3.0/include</Value>
+      <Value>C:/Users/John/AppData/Local/arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7/avr/include</Value>
+      <Value>C:/Users/John/AppData/Local/arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7/avr/include-fixed</Value>
+      <Value>C:/Users/John/AppData/Local/arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7/avr/include/avr</Value>
+      <Value>C:/Users/John/AppData/Local/arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7/lib/gcc/avr/4.9.2/include</Value>
+      <Value>C:/Users/John/AppData/Local/arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7/lib/gcc/avr/4.9.3/include</Value>
+      <Value>{vm.intellisense.add-paths}</Value>
+    </ListValues>
+  </armgcc.compiler.directories.IncludePaths>
+  <armgcc.compiler.optimization.level>Optimize debugging experience (-Og)</armgcc.compiler.optimization.level>
+  <armgcc.compiler.optimization.PrepareFunctionsForGarbageCollection>True</armgcc.compiler.optimization.PrepareFunctionsForGarbageCollection>
+  <armgcc.compiler.optimization.DebugLevel>Maximum (-g3)</armgcc.compiler.optimization.DebugLevel>
+  <armgcc.compiler.warnings.AllWarnings>True</armgcc.compiler.warnings.AllWarnings>
+  <armgcccpp.compiler.symbols.DefSymbols>
+    <ListValues>
+      <Value>__AVR_ATmega328p__</Value>
+      <Value>__AVR_ATmega328P__</Value>
+      <Value>_VMDEBUG=1</Value>
+      <Value>ARDUINO=108013</Value>
+      <Value>ARDUINO_MAIN</Value>
+      <Value>F_CPU=16000000L</Value>
+      <Value>__AVR__</Value>
+      <Value>ARDUINO_AVR_UNO</Value>
+      <Value>ARDUINO_ARCH_AVR</Value>
+    </ListValues>
+  </armgcccpp.compiler.symbols.DefSymbols>
+  <armgcccpp.compiler.directories.IncludePaths>
+    <ListValues>
+      <Value>../../../Actuator_4_Relays</Value>
+      <Value>C:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries/SoftwareSerial/src</Value>
+      <Value>C:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries/Wire/src</Value>
+      <Value>C:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries/Wire/src/utility</Value>
+      <Value>C:/Program Files (x86)/Arduino/hardware/arduino/avr/cores/arduino</Value>
+      <Value>C:/Program Files (x86)/Arduino/hardware/arduino/avr/variants/standard</Value>
+      <Value>C:/Users/John/Desktop/ACTUAT~1/ACTUAT~1</Value>
+      <Value>C:/Users/John/AppData/Local/arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7//lib/gcc/avr/7.3.0/include</Value>
+      <Value>C:/Users/John/AppData/Local/arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7/avr/include</Value>
+      <Value>C:/Users/John/AppData/Local/arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7/avr/include-fixed</Value>
+      <Value>C:/Users/John/AppData/Local/arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7/avr/include/avr</Value>
+      <Value>C:/Users/John/AppData/Local/arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7/lib/gcc/avr/4.9.2/include</Value>
+      <Value>C:/Users/John/AppData/Local/arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7/lib/gcc/avr/4.9.3/include</Value>
+      <Value>{vm.intellisense.add-paths}</Value>
+    </ListValues>
+  </armgcccpp.compiler.directories.IncludePaths>
+  <armgcccpp.compiler.optimization.level>Optimize debugging experience (-Og)</armgcccpp.compiler.optimization.level>
+  <armgcccpp.compiler.optimization.PrepareFunctionsForGarbageCollection>True</armgcccpp.compiler.optimization.PrepareFunctionsForGarbageCollection>
+  <armgcccpp.compiler.optimization.DebugLevel>Maximum (-g3)</armgcccpp.compiler.optimization.DebugLevel>
+  <armgcccpp.compiler.warnings.AllWarnings>True</armgcccpp.compiler.warnings.AllWarnings>
+  <armgcccpp.linker.libraries.Libraries>
+    <ListValues>
+      <Value>libm</Value>
+    </ListValues>
+  </armgcccpp.linker.libraries.Libraries>
+  <armgcccpp.linker.libraries.LibrarySearchPaths>
+    <ListValues>
+      <Value>%24(ProjectDir)\Device_Startup</Value>
+    </ListValues>
+  </armgcccpp.linker.libraries.LibrarySearchPaths>
+  <armgcccpp.linker.optimization.GarbageCollectUnusedSections>True</armgcccpp.linker.optimization.GarbageCollectUnusedSections>
+  <armgcccpp.linker.miscellaneous.LinkerFlags>-Tsam3x8e_flash.ld</armgcccpp.linker.miscellaneous.LinkerFlags>
+  <armgcccpp.assembler.general.IncludePaths>
+    <ListValues>
+      <Value>%24(PackRepoDir)\arm\CMSIS\5.4.0\CMSIS\Core\Include\</Value>
+      <Value>%24(PackRepoDir)\atmel\SAM3X_DFP\1.0.50\include</Value>
+    </ListValues>
+  </armgcccpp.assembler.general.IncludePaths>
+  <armgcccpp.assembler.debugging.DebugLevel>Default (-g)</armgcccpp.assembler.debugging.DebugLevel>
+  <armgcccpp.preprocessingassembler.general.IncludePaths>
+    <ListValues>
+      <Value>%24(PackRepoDir)\arm\CMSIS\5.4.0\CMSIS\Core\Include\</Value>
+      <Value>%24(PackRepoDir)\atmel\SAM3X_DFP\1.0.50\include</Value>
+    </ListValues>
+  </armgcccpp.preprocessingassembler.general.IncludePaths>
+  <armgcccpp.preprocessingassembler.debugging.DebugLevel>Default (-Wa,-g)</armgcccpp.preprocessingassembler.debugging.DebugLevel>
+</ArmGccCpp>
+    </ToolchainSettings>
+    <VisualMicroSettings>
+      <VisualMicroSettings>
+        <config.Debug.customdebug_uno_debugger_type>universal</config.Debug.customdebug_uno_debugger_type>
+        <ValidatedAS7>1</ValidatedAS7>
+        <custom_uno_vm.programmer_name>atmel_ice</custom_uno_vm.programmer_name>
+        <custom_uno_vm.upload.useprogrammer>1</custom_uno_vm.upload.useprogrammer>
+      </VisualMicroSettings>
+    </VisualMicroSettings>
+    <VMSETTING_IncludePaths>../../../Actuator_4_Relays;C:/Program Files (x86)/Arduino/hardware/arduino/avr/cores/arduino;C:/Program Files (x86)/Arduino/hardware/arduino/avr/variants/standard;C:/Users/John/AppData/Local/arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7//lib/gcc/avr/7.3.0/include;C:/Users/John/AppData/Local/arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7/avr/include;C:/Users/John/AppData/Local/arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7/avr/include-fixed;C:/Users/John/AppData/Local/arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7/avr/include/avr;C:/Users/John/AppData/Local/arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7/lib/gcc/avr/4.9.2/include;C:/Users/John/AppData/Local/arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7/lib/gcc/avr/4.9.3/include;{vm.intellisense.add-paths};C:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries/SoftwareSerial/src;C:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries/Wire/src;C:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries/Wire/src/utility;C:/Users/John/Desktop/ACTUAT~1/ACTUAT~1;</VMSETTING_IncludePaths>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Actuator_4_Relays.ino">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="lib\Actions\Actions.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="lib\Actions\Actions.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="lib\EEPROM\EEPROM.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="lib\EEPROM\EEPROM.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="lib\Encoder\Encoder.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="lib\Encoder\Encoder.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="lib\LoRaProcess\LoRaProcess.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="lib\LoRaProcess\LoRaProcess.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="lib\LoraWan\LoraWan.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="lib\LoraWan\LoraWan.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="lib\Storage\Storage.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="lib\Storage\Storage.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="lib\TimerOne\config\known_16bit_timers.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="lib\TimerOne\TimerOne.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="lib\TimerOne\TimerOne.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Parameters.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="__vm\.Actuator_4_Relays.vsarduino.h">
+      <SubType>compile</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="lib\" />
+    <Folder Include="lib\Actions\" />
+    <Folder Include="lib\EEPROM\" />
+    <Folder Include="lib\Encoder\" />
+    <Folder Include="lib\LoraWan\" />
+    <Folder Include="lib\LoRaProcess" />
+    <Folder Include="lib\Storage\" />
+    <Folder Include="lib\TimerOne\" />
+    <Folder Include="lib\TimerOne\config\" />
+    <Folder Include="__vm\" />
+  </ItemGroup>
+  <Import Project="$(AVRSTUDIO_EXE_PATH)\\Vs\\Compiler.targets" />
+</Project>
