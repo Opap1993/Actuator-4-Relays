@@ -1,0 +1,21 @@
+/*
+ * Actuator_4_Relays.cpp
+ *
+ * Created: 3/20/2025 9:32:06 AM
+ * Author : John
+ */ 
+
+
+#include "sam.h"
+
+
+int main(void)
+{
+    /* Initialize the SAM system */
+    SystemInit();
+
+    /* Replace with your application code */
+    while (1) 
+    {
+    }
+}
