@@ -17,7 +17,7 @@ class EncoderClass
 {
 	public:
 	void init(Stream *debug);
-	void setRelayStatus(bool status, bool status2);
+	void setRelayStatus(bool status, bool status2, bool status3, bool status4);
 	uint8_t encodeWorkingRelays(byte *payload, uint8_t start);
 	void setActionType(action_type type);
 	uint8_t formatPayloadPrefix(byte *payload, payload_type type);
@@ -44,6 +44,8 @@ class EncoderClass
 	Stream *debug;
 	bool relay = false;
 	bool relay2 = false;
+	bool relay3 = false;
+	bool relay4 = false;
 	uint32_t counter = 0;
 	uint32_t RejoinCounter = 0;
 	bool availableCom = false;

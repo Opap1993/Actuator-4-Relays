@@ -41,7 +41,7 @@ void LoRaProcess::sendData(bool confirmation, uint32_t counter, uint32_t rejoinC
 			
 			Encoder.setStopReason(Actions.stop_reason);
 			Encoder.setActionType(Actions.type);
-			Encoder.setRelayStatus(Actions.relay, Actions.relay2);
+			Encoder.setRelayStatus(Actions.relays[1].state, Actions.relays[2].state, Actions.relays[3].state, Actions.relays[4].state);
 			Encoder.setCounter(counter);
 			Encoder.setRejoinCounter(rejoinCounter);
 			Encoder.setRemaining(remaining);
@@ -58,7 +58,7 @@ void LoRaProcess::sendData(bool confirmation, uint32_t counter, uint32_t rejoinC
 			
 			Encoder.setStopReason(Actions.stop_reason);
 			Encoder.setActionType(Actions.type);
-			Encoder.setRelayStatus(Actions.relay, Actions.relay2);
+			Encoder.setRelayStatus(Actions.relays[1].state, Actions.relays[2].state, Actions.relays[3].state, Actions.relays[4].state);
 			Encoder.setRejoinCounter(rejoinCounter);
 			Encoder.setRemaining(remaining);
 			Encoder.setCounter(counter);
@@ -67,7 +67,7 @@ void LoRaProcess::sendData(bool confirmation, uint32_t counter, uint32_t rejoinC
 			size = Encoder.getPayload(payload, CONFIRMATION, 20);
 		}
 		
-		if (Actions.relay || Actions.relay2 || confirmation || (unconfirmed_sent >= confirmed_interval) ) {
+		if (Actions.anyRelayOn || confirmation || (unconfirmed_sent >= confirmed_interval) ) {
 			debug->println(F("Transmit Confirmed Packet"));
 			confirmed = LoraWan.transferConfirmedPacket(2, payload, size, 10); //to be checked
 			countUnconfirmedPackets(confirmed, debug);	

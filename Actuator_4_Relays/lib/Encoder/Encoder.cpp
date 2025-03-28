@@ -5,9 +5,12 @@ void EncoderClass::init(Stream *debug) {
 }
 
 
-void EncoderClass::setRelayStatus(bool status, bool status2) {
+void EncoderClass::setRelayStatus(bool status, bool status2, bool status3, bool status4) {
 	relay = status;
 	relay2 = status2;
+	relay3 = status3;
+	relay4 = status4;
+	
 }
 
 uint8_t EncoderClass::encodeWorkingRelays(byte *payload, uint8_t start) { //This function will indicate the working relays and their status
@@ -15,8 +18,17 @@ uint8_t EncoderClass::encodeWorkingRelays(byte *payload, uint8_t start) { //This
 	if (relay){
 		payload[start] |= 1 << 7;
 	}
+	
 	if (relay2){
 		payload[start] |= 1 << 6;
+	}
+	
+	if (relay3){
+		payload[start] |= 1 << 5;
+	}
+	
+	if (relay4){
+		payload[start] |= 1 << 4;
 	}
 	return 1;
 }
@@ -36,7 +48,7 @@ uint8_t EncoderClass::formatPayloadPrefix(byte *payload, payload_type type) {
 		payload[0] |= 1 << 6;
 	}
 	
-	if(relay || relay2) {
+	if(relay || relay2 || relay3 || relay4) {
 		payload[0] |= 1 << 5; //indicates that at least 1 relay is on
 	}
 

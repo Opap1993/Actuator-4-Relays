@@ -49,11 +49,18 @@
 
 enum action_type {
 	RELAY_ON_SWITCH,
-	RELAY_ON_TIME,
-	STOP,
 	RELAY2_ON_SWITCH,
+	RELAY3_ON_SWITCH,
+	RELAY4_ON_SWITCH,
+	RELAY_ON_TIME,
 	RELAY2_ON_TIME,
+	RELAY3_ON_TIME,
+	RELAY4_ON_TIME,
+	STOP,
 	STOP2,
+	STOP3,
+	STOP4,
+	STOP_ALL,
 	CONFIG,
 	TRANSMIT,
 	MEASURE
@@ -64,6 +71,11 @@ enum stop_type {
 	MALFUNCTION,
 	CONNECTION_LOST,
 	STOP_COMMAND
+};
+
+struct relayState {
+	bool state;
+	int pin;
 };
 
 #endif

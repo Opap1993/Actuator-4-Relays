@@ -7,60 +7,45 @@ void ActionsClass::init(Stream *debug, EncoderClass *encoder, StorageClass *stor
 }
 
 action_type ActionsClass::decodeActionType(byte *payload) {
-	bool relay_on_switch = payload[0]  & (1 << 7);
-	bool relay_on_time = payload[0]  & (1 << 6);
-	bool stop = payload[0]  & (1 << 5);
-	bool config = payload[0]  & (1 << 4);
-	bool transmit = payload[0] & (1 << 3);
-	
-	bool relay2_on_switch = payload[1]  & (1 << 7);
-	bool relay2_on_time = payload[1]  & (1 << 6);
-	bool stop2 = payload[1]  & (1 << 5);
+	// Action mappings
+	struct {
+		byte byteIndex;
+		byte bitMask;
+		action_type action;
+		const char *message;
+		} actions[] = {
+		{0, (1 << 7), RELAY_ON_SWITCH, "Relay On Switch"},
+		{0, (1 << 6), RELAY_ON_TIME, "Relay On Time"},
+		{0, (1 << 5), STOP, "STOP"},
+		{1, (1 << 7), RELAY2_ON_SWITCH, "Relay 2 On Switch"},
+		{1, (1 << 6), RELAY2_ON_TIME, "Relay 2 On Time"},
+		{1, (1 << 5), STOP2, "STOP 2"},
+		{1, (1 << 4), RELAY3_ON_SWITCH, "Relay 3 On Switch"},
+		{1, (1 << 3), RELAY3_ON_TIME, "Relay 3 On Time"},
+		{1, (1 << 2), STOP3, "STOP 3"},
+		{1, (1 << 1), RELAY4_ON_SWITCH, "Relay 4 On Switch"},
+		{1, (1 << 0), RELAY4_ON_TIME, "Relay 4 On Time"},
+		{2, (1 << 7), STOP4, "STOP 4"},
+		{2, (1 << 6), STOP_ALL, "STOP ALL RELAYS"},
+		{0, (1 << 4), CONFIG, "Config"}
+	};
 
-	
-	if(stop) {
-		debug->println("STOP");
-		return STOP;
+	// Loop through the actions and find a match
+	for (auto &a : actions) {
+		if (payload[a.byteIndex] & a.bitMask) {
+			debug->println(a.message);
+			return a.action;
+		}
 	}
 	
-	if(relay_on_switch) {
-		debug->println("Relay On Switch");
-		return RELAY_ON_SWITCH;
-	}
-	
-	if(relay_on_time) {
-		debug->println("Relay On Time");
-		return RELAY_ON_TIME;
-	}
-	
-	if(stop2) {
-		debug->println("STOP 2");
-		return STOP2;
-	}
-	
-	if(relay2_on_switch) {
-		debug->println("Relay 2 On Switch");
-		return RELAY2_ON_SWITCH;
-	}
-	
-	if(relay2_on_time) {
-		debug->println("Relay 2 On Time");
-		return RELAY2_ON_TIME;
-	}
-	
-	if(config) {
-		debug->println("Config");
-		return CONFIG;
-	}
-	
-	if(transmit) {
+	if(payload[0] & (1 << 3)) {
 		debug->println(F("Transmit "));
 		transmit = true;
 	}
 }
 
 void ActionsClass::reset() {
-	stop();
+	stopAll();
 	type = MEASURE;
 	ack = 0;
 	remaining = 0;
@@ -76,24 +61,16 @@ void ActionsClass::setAction(byte *payload){
 	this->type = decodeActionType(payload);
 	this->ack = this->encoder->decodeAck(payload,1);
 	
-	if(type == RELAY_ON_SWITCH || type == RELAY_ON_TIME)  {
+	if(type == RELAY_ON_SWITCH || type == RELAY_ON_TIME || type == RELAY2_ON_SWITCH || type == RELAY2_ON_TIME || type == RELAY3_ON_SWITCH || type == RELAY3_ON_TIME || type == RELAY4_ON_SWITCH || type == RELAY4_ON_TIME)  {
 		actionStart = millis();
 		seconds = 0;
 		minutes = 0;
 		
 		this->remaining = this->encoder->decodeRemaining(payload,5);
 	}
-	else if (type == RELAY2_ON_SWITCH || type == RELAY2_ON_TIME) {
-		actionStart = millis();
-		seconds2 = 0;
-		minutes2 = 0;
-		
-		this->remaining2 = this->encoder->decodeRemaining(payload,5);
-		
-	}
 	
 	else if(type == CONFIG) {
-		stop();
+		stopAll();
 		this->configure(payload,5);
 	}
 	
@@ -163,34 +140,73 @@ void ActionsClass::configure(byte *payload, uint8_t size) {
 }
 
 void ActionsClass::run() {
+	
+	
 	switch(type) {
 		case RELAY_ON_SWITCH:
-		relayOnSwitch();
+		relayOnSwitch(1);
 		break;
-		case RELAY_ON_TIME:
-		relayOnTime();
-		break;
-		case STOP:
-		stop(STOP_COMMAND);
-		break;
+		
 		case RELAY2_ON_SWITCH:
-		relay2OnSwitch();
+		relayOnSwitch(2);
 		break;
+		
+		case RELAY3_ON_SWITCH:
+		relayOnSwitch(3);
+		break;
+		
+		case RELAY4_ON_SWITCH:
+		relayOnSwitch(4);
+		break;
+		
+		case RELAY_ON_TIME:
+		relayOnTime(1);
+		break;
+		
 		case RELAY2_ON_TIME:
-		relay2OnTime();
+		relayOnTime(2);
 		break;
+		
+		case RELAY3_ON_TIME:
+		relayOnTime(3);
+		break;
+		
+		case RELAY4_ON_TIME:
+		relayOnTime(4);
+		break;
+		
+		case STOP:
+		stop(1,STOP_COMMAND);
+		break;
+		
 		case STOP2:
-		stop2(STOP_COMMAND);
+		stop(2,STOP_COMMAND);
+		break;
+		
+		case STOP3:
+		stop(3,STOP_COMMAND);
+		break;
+		
+		case STOP4:
+		stop(4,STOP_COMMAND);
+		break;
+		
+		case STOP_ALL:
+		stopAll(STOP_COMMAND);
 		break;
 	}
 	
-	if(relay || relay2) { 
-		if((millis() - actionStart) > malfunctionTimeout ){
-			debug->println("Flow Malfunction");
-			stop(MALFUNCTION);
-			stop2(MALFUNCTION);
-			return;
+	for (int i = 1; i < 5; i++) {
+		if (relays[i].state) {
+			anyRelayOn = true;
+			break; 
 		}
+	}
+	
+	if (anyRelayOn && (millis() - actionStart) > malfunctionTimeout) {
+		debug->println("Flow Malfunction");
+		stopAll(MALFUNCTION);
+		return;
 	}
 }
 
@@ -223,56 +239,57 @@ uint32_t ActionsClass::count(uint32_t counter) {
 	return counter;
 }
 
-void ActionsClass::stop(stop_type stop_reason) {
+void ActionsClass::stopAll(stop_type stop_reason) {
 	this->stop_reason = stop_reason;
 	transmit_stop = true;
-	relayOff();
+	relayOff(1);
+	relayOff(2);
+	relayOff(3);
+	relayOff(4);
 	this->remaining = 0;
 	this->type = MEASURE;
 }
 
-void ActionsClass::stop2(stop_type stop_reason) {
+void ActionsClass::stop(int i, stop_type stop_reason) {
 	this->stop_reason = stop_reason;
 	transmit_stop = true;
-	relay2Off();
+	relayOff(i);
+	relays[i].state = false;
 	this->remaining = 0;
 	this->type = MEASURE;
 }
 
-void ActionsClass::relayOn(){
-	pinMode(7, OUTPUT);
-	digitalWrite(7, HIGH);
-	relay = true;
+
+void ActionsClass::relayOn(int i){
+	
+	if (i < 0 || i > 4) {
+		debug->println("Invalid relay index!");
+		return;
+	}
+	pinMode(relays[i].pin, OUTPUT);
+	digitalWrite(relays[i].pin, HIGH);
+	relays[i].state = true;
 	startTime = millis();
-	debug->print("Relay On ");
+	debug->print("Relay On: ");
+	debug->print(i);
 	stop_reason = NORMAL;
+
 }
 
-void ActionsClass::relay2On(){
-	pinMode(9, OUTPUT);
-	digitalWrite(9, HIGH);
-	relay2 = true;
-	startTime = millis();
-	debug->print("Relay 2 On ");
-	stop_reason = NORMAL;
-}
 
-void ActionsClass::relayOff() {
-	digitalWrite(7, LOW);
+void ActionsClass::relayOff(int i) {
+	if (i < 0 || i > 4) {
+		debug->println("Invalid relay index!");
+		return;
+	}
+	digitalWrite(relays[i].pin, LOW);
 	debug->println("Relay Off");
-	relay = false;
-
-}
-
-void ActionsClass::relay2Off() {
-	digitalWrite(9, LOW);
-	debug->println("Relay 2 Off");
-	relay2 = false;
+	relays[i].state = false;
 
 }
 
 
-void ActionsClass::relayOnTime(){
+void ActionsClass::relayOnTime(int i){
 	debug->print(minutes);
 	debug->print(":");
 	debug->println(seconds);
@@ -280,15 +297,16 @@ void ActionsClass::relayOnTime(){
 	debug->print("Remaining:");
 	debug->println(remaining);
 	
-	if(!relay && remaining > 0) {
-		relayOn();
-	}
-	
-	if (relay &&  remaining <= 0){
-		stop();
-		this->type = MEASURE;
-	}
-	
+	if (!relays[i].state && remaining > 0) {
+			relayOn(i);
+			//relays[i].state = true; 
+		}
+		if (relays[i].state && remaining <= 0) {
+			stop(i);
+			//relays[i].state = false;  
+			this->type = MEASURE;
+		}
+
 	if(seconds < 59){
 		seconds += 1;
 	}
@@ -302,47 +320,12 @@ void ActionsClass::relayOnTime(){
 }
 
 
-void ActionsClass::relay2OnTime(){
-	debug->print(minutes2);
-	debug->print(":");
-	debug->println(seconds2);
-	
-	debug->print("Remaining:");
-	debug->println(remaining2);
-	
-	if(!relay2 && remaining2 > 0) {
-		relay2On();
-	}
-	
-	if (relay2 &&  remaining2 <= 0){
-		stop();
-		this->type = MEASURE;
-	}
-	
-	if(seconds2 < 59){
-		seconds2 += 1;
-	}
-	else {
-		seconds2 = 0;
-		minutes2++;
-		if(remaining2 > 0) {
-			remaining2--;
-		}
-	}
-}
-
-void ActionsClass::relayOnSwitch(){
-	if(!relay) {
+void ActionsClass::relayOnSwitch(int i){
+	if(!relays[i].state) {
 		debug->println("Relay on Switch begins!");
-		relayOn();
+		relayOn(i);
 	}
-}
-
-void ActionsClass::relay2OnSwitch(){
-	if(!relay2) {
-		debug->println("Relay 2 on Switch begins!");
-		relay2On();
-	}
-}
+  }
+  
 
 ActionsClass Actions;

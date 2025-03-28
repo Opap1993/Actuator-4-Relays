@@ -24,16 +24,19 @@ class ActionsClass {
 	void run();
 	bool transmitStopReason();
 	uint32_t count(uint32_t counter);
-	void stop(stop_type reason = NORMAL);
-	void stop2(stop_type reason = NORMAL);
-	void relayOn();
-	void relay2On();
-	void relayOff();
-	void relay2Off();
-	void relayOnTime();
-	void relay2OnTime();
-	void relayOnSwitch();
-	void relay2OnSwitch();
+	
+	void stop(int i, stop_type reason = NORMAL);
+	void stopAll(stop_type reason = NORMAL);
+	
+	void relayOn(int i);
+	
+	void relayOff(int i);
+	
+	void relayOnTime(int i);
+	
+	void relayOnSwitch(int i);
+
+	
 	uint32_t ack = 0;
 	uint16_t remaining = 0;
 	uint16_t remaining2 = 0;
@@ -45,12 +48,20 @@ class ActionsClass {
 	unsigned long actionStart = 0;
 	unsigned long malfunctionTimeout = 1800000;
 	unsigned long startTime = 0;
-	bool relay = false;
-	bool relay2 = false;
+
 	bool config = false;
+	bool anyRelayOn = false;
 	
 	action_type type = MEASURE;
 	stop_type stop_reason;
+	
+	relayState relays[5] = {
+		{0,0}, //offset
+		{false, 4},  // Relay 1 (OFF, Pin 4)
+		{false, 5},  // Relay 2 (OFF, Pin 5)
+		{false, 7},  // Relay 3 (OFF, Pin 7)
+		{false, 9}   // Relay 4 (OFF, Pin 9)
+	};
 	
 	bool t0 = true;
 	unsigned long startPulse = 0;
