@@ -34,10 +34,10 @@ void LoRaProcess::sendData(bool confirmation, uint32_t counter, uint32_t rejoinC
 	
 	if(joined) {
 		if(!confirmation) {
-			debug->print(F("Counter :"));
-			debug->println(counter);
-			debug->print(F("RejoinCounter :"));
-			debug->println(rejoinCounter);
+			//debug->print("Counter :");
+			//debug->println(counter);
+			//debug->print("RejoinCounter :");
+			//debug->println(rejoinCounter);
 			
 			Encoder.setStopReason(Actions.stop_reason);
 			Encoder.setActionType(Actions.type);

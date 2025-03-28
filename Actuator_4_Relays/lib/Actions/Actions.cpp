@@ -4,6 +4,10 @@ void ActionsClass::init(Stream *debug, EncoderClass *encoder, StorageClass *stor
 	this->debug = debug;
 	this->encoder = encoder;
 	this->storage = storage;
+	for(int j=1; j<=4; j++){
+	pinMode(relays[j].pin, OUTPUT);
+	digitalWrite(relays[j].pin, LOW);
+	}
 }
 
 action_type ActionsClass::decodeActionType(byte *payload) {
@@ -266,12 +270,10 @@ void ActionsClass::relayOn(int i){
 		debug->println("Invalid relay index!");
 		return;
 	}
-	pinMode(relays[i].pin, OUTPUT);
 	digitalWrite(relays[i].pin, HIGH);
 	relays[i].state = true;
 	startTime = millis();
 	debug->print("Relay On: ");
-	debug->print(i);
 	stop_reason = NORMAL;
 
 }
@@ -283,7 +285,7 @@ void ActionsClass::relayOff(int i) {
 		return;
 	}
 	digitalWrite(relays[i].pin, LOW);
-	debug->println("Relay Off");
+	debug->println("Relay Off: ");
 	relays[i].state = false;
 
 }

@@ -39,11 +39,9 @@ class ActionsClass {
 	
 	uint32_t ack = 0;
 	uint16_t remaining = 0;
-	uint16_t remaining2 = 0;
 	uint8_t seconds = 0;
 	uint16_t minutes = 0;
-	uint8_t seconds2 = 0;
-	uint16_t minutes2 = 0;
+	
 	unsigned long lastCountTime = 0;
 	unsigned long actionStart = 0;
 	unsigned long malfunctionTimeout = 1800000;

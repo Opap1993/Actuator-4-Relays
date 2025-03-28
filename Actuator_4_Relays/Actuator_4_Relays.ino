@@ -63,7 +63,7 @@ void setup()
 
 void loop()
 {
-	//wdt_reset();
+	wdt_reset();
 	if (counter > 20000000){
 		counter = 0;
 		Storage.formatLog();
